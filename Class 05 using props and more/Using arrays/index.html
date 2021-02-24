@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Class 05</title>
+        <meta charset="utf-8"/>
+        <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    </head>
+
+    <body>
+        <section id="reactID"></section>
+
+        <script type="text/babel">
+
+            const css = {
+                fontFamily: "sans-serif",
+                color: "#9ba4b4",
+                padding: "1rem",
+                margin: "1rem",
+                borderRadius: "0.4rem",
+                background: "linear-gradient(to bottom, #14274e, #394867)",
+            }
+            
+            const Welcomer = ({name}) => { 
+                
+                return (
+                    <div style={css}>
+                        <h1>Hello! {name}</h1>
+                        {
+                            [
+                                <h1 key={"1"}>Hi!</h1>,
+                                <h1 key={"2"}>I'm</h1>,
+                                <h1 key={"3"}>Using</h1>,
+                                <h1 key={"4"}>React</h1>
+                            ]
+                        }
+                    </div>
+                )
+            }
+
+            const App = () => {
+                return (
+                    <section>
+                        <Welcomer name="Erick"/>    
+                        <Welcomer name="Juan"/>
+                        <Welcomer/>
+                    </section>
+                )
+            }
+
+            const DOM_NODE = document.getElementById("reactID")
+            ReactDOM.render(<App/>, DOM_NODE)
+        </script>
+    </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'/>
+        <title>Hello world</title>
+    </head>
+
+    <body>
+        <div id='root'></div>
+    </body>
+
+    <script>
+        const App = document.createElement('div')
+        App.textContent = 'Hello'
+        const DOM_NODE = document.getElementById('root')
+        DOM_NODE.appendChild(App)
+
+        /**Using React we get
+        const App = () => (
+            <div>Hello world</div>
+        )
+
+        const DOM_ID = document.getElementById('rootID')
+        ReactDOM.render(<App />, DOM_ID); 
+        **/
+    </script>
+</html>
