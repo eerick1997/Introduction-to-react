@@ -1,0 +1,26 @@
+main {
+  background-color: aliceblue;
+  padding: 1rem;
+}
+
+section {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+}
+
+aside {
+  background-color: rgb(26, 26, 26);
+  height: 100vh;
+  max-width: 10vw;
+  padding: 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+svg {
+  filter: invert(100%);
+}
+
