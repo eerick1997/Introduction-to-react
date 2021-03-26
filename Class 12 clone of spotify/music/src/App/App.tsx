@@ -30,7 +30,9 @@ const App = () => {
       <Nav />
       {audio}
       <main className={styles.main}>
+
         <Header />
+        
         <Switch>
           <Route path="/about">
             <div>About!</div>
