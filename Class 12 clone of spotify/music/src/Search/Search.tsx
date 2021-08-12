@@ -1,5 +1,5 @@
-import React, { useRef, useState, FunctionComponent as FC } from "react"
-import { song } from "../App/App"
+import React, { useContext, useRef, useState, FunctionComponent as FC } from "react"
+import { song, NumberOfPlayedSongs } from "../App/App"
 
 import { BiSearchAlt, BiPause, BiPlay } from "react-icons/bi"
 import styles from "./search.module.css"
@@ -55,9 +55,9 @@ const Search: React.FC<{
         <h2 className={styles.message}>{message}</h2>
       ) : (
         <div className={styles.container}>
-          {data.map(({ albumName, name, previewURL }) => (
+          {data.map(({ albumName, name, previewURL }, index) => (
             <Result
-              key={name + albumName}
+              key={index}
               setSongInfo={setSongInfo}
               album={albumName}
               song={name}
@@ -96,6 +96,7 @@ const Result: FC<{
   const itIsMe = songInfo != null && songInfo.albumName === album && songInfo.songName === song
   const [myColors] = useState(() => colors[Math.floor(Math.random() * colors.length)])
   const [color1, color2] = myColors
+  const changeTimes = useContext(NumberOfPlayedSongs)
   return (
     <article
       className={styles.track}
@@ -108,6 +109,7 @@ const Result: FC<{
       <div
         className={styles.control}
         onClick={() => {
+          changeTimes()
           if (itIsMe) state.paused ? controls.play() : controls.pause()
           else setSongInfo({ albumName: album, songName: song, url, needToPlay: true })
         }}

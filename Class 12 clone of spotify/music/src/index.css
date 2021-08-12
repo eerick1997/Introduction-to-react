@@ -17,9 +17,12 @@ html {
   }
 }
 
-html,
-body,
-#root {
+
+html, body, #root {
   max-height: 100vh;
   min-height: 100vh;
+}
+
+svg {
+  cursor: pointer;
 }

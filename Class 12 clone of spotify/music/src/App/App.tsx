@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, createContext } from "react"
 import styles from "./App.module.css"
 import { useAudio } from "react-use"
 import { Route, Switch, useHistory } from "react-router-dom"
@@ -7,6 +7,8 @@ import Search from "../Search/Search"
 import Nav from "../Nav/Nav"
 import Header from "../Header/Header"
 import Player from "../Player/Player"
+
+const NumberOfPlayedSongs = createContext(() => {})
 
 type song = { albumName: string; songName: string; url: string; needToPlay: boolean } | null
 const App = () => {
@@ -25,35 +27,45 @@ const App = () => {
     }
   }, [songInfo, controls])
 
-  return (
-    <section className={styles.container}>
-      <Nav />
-      {audio}
-      <main className={styles.main}>
+  const [times, setTimes] = useState(0)
 
-        <Header />
-        
-        <Switch>
-          <Route path="/about">
-            <div>About!</div>
-          </Route>
-          <Route path="/me">
-            <div>Me!</div>
-          </Route>
-          <Route path="/search">
-            <Search
-              songInfo={songInfo}
-              setSongInfo={setSongInfo}
-              state={state}
-              controls={controls}
-            />
-          </Route>
-        </Switch>
-      </main>
-      <Player songInfo={songInfo} state={state} controls={controls} audio={ref.current} />
-    </section>
+  useEffect(() => {
+    console.log({ times })
+  }, [times])
+
+  const add1 = () => setTimes(t => t + 1)
+
+  return (
+    <NumberOfPlayedSongs.Provider value={add1}>
+      <section className={styles.container}>
+        <Nav />
+        {audio}
+        <main className={styles.main}>
+          <Header />
+
+          <Switch>
+            <Route path="/about">
+              <div>About!</div>
+            </Route>
+            <Route path="/me">
+              <div>Me!</div>
+            </Route>
+            <Route path="/search">
+              <Search
+                songInfo={songInfo}
+                setSongInfo={setSongInfo}
+                state={state}
+                controls={controls}
+              />
+            </Route>
+          </Switch>
+        </main>
+        <Player songInfo={songInfo} state={state} controls={controls} audio={ref.current} />
+      </section>
+    </NumberOfPlayedSongs.Provider>
   )
 }
 
 export type { song }
+export { NumberOfPlayedSongs }
 export default App

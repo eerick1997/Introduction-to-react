@@ -16,7 +16,7 @@ const MyLink: FC<{ title: string; to: string }> = ({ title, to }) => {
 
 const Header = () => {
   return (
-    <header>
+    <header className={style.container}>
       <nav className={style.header}>
         <MyLink title="Me" to="/me" />
         <MyLink title="Search" to="/search" />

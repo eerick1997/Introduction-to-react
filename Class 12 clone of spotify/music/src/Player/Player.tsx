@@ -1,6 +1,6 @@
-import React from "react"
+import React, {useContext} from "react"
 
-import { song } from "../App/App"
+import { song, NumberOfPlayedSongs } from "../App/App"
 
 import styles from "./player.module.css"
 import { BiPause, BiPlay, BiVolumeFull, BiVolumeMute } from "react-icons/bi"
@@ -12,7 +12,9 @@ const Player: React.FC<{
   controls: HTMLMediaControls
   audio: HTMLAudioElement | null
 }> = ({ songInfo, state, controls, audio }) => {
+  const changeTimes = useContext(NumberOfPlayedSongs)
   const toggle = () => {
+    changeTimes()
     if (state.paused) controls.play()
     else controls.pause()
   }
